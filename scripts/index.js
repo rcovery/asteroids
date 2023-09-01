@@ -1,30 +1,21 @@
 import { Renderer } from './renderer.js';
+import { Keyboard } from './keyboard.js';
 import { Player } from './sprites/player/index.js';
 
 const canvas = document.querySelector('#game_canvas');
 const renderer = new Renderer({ canvas });
-
-const player = new Player({ context: renderer.context });
+const keyboard = new Keyboard();
+const player = new Player({ context: renderer.context, keyboard });
 
 document.addEventListener('keydown', (event) => {
-    player.move(event);
+    keyboard.pressed(event.key);
+});
+document.addEventListener('keyup', (event) => {
+    keyboard.released(event.key);
 });
 
-
-
 renderer.addSprite(player);
-
-
-
-
-
 renderer.start();
-
-
-
-
-
-
 
 // const IMAGE_SIZE = 120;
 // let INVERT_IMAGE_X = false;

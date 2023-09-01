@@ -1,29 +1,30 @@
 import { Factory } from '../factory.js';
+import { MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, MOVE_UP, PLAYER_MAX_SPEED } from '/scripts/constants.js';
 
 export class Player extends Factory {
-    // TODO salvar teclas pressionadas em um objeto, e no método update, atualizar a posição;
-
     availableMoves = {
-        'KeyD': () => {
-            this.x += 10
+        [MOVE_RIGHT]: () => {
+            this.x += PLAYER_MAX_SPEED
         },
-        'KeyA': () => {
-            this.x -= 10
+        [MOVE_LEFT]: () => {
+            this.x -= PLAYER_MAX_SPEED
         },
-        'KeyS': () => {
-            this.y += 10
+        [MOVE_DOWN]: () => {
+            this.y += PLAYER_MAX_SPEED
         },
-        'KeyW': () => {
-            this.y -= 10
+        [MOVE_UP]: () => {
+            this.y -= PLAYER_MAX_SPEED
         },
     }
 
-    constructor({ context }) {
+    constructor({ context, keyboard }) {
         super();
         this.context = context;
+        this.keyboard = keyboard;
     }
 
     update() {
+        this.move();
     };
 
     draw() {
@@ -32,8 +33,11 @@ export class Player extends Factory {
         this.context.fillRect(this.x, this.y, 100, 100);
     }
 
-    move(event) {
-        if (!this.availableMoves?.[event.code]) return;
-        this.availableMoves[event.code]();
+    move() {
+        for (let key in this.availableMoves) {
+            if (this.keyboard.pressedKeys.has(key)) {
+                this.availableMoves[key]();
+            }
+        }
     }
 }
