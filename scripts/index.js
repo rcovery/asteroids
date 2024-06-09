@@ -17,15 +17,15 @@ document.addEventListener('keyup', (event) => {
 renderer.addSprite(player);
 renderer.start();
 
-// const IMAGE_SIZE = 120;
-// let INVERT_IMAGE_X = false;
-// let INVERT_IMAGE_Y = false;
-// let IMAGE_X_POS = ~~(Math.random() * (SCREEN_WIDTH - IMAGE_SIZE));
-// let IMAGE_Y_POS = ~~(Math.random() * (SCREEN_HEIGHT - IMAGE_SIZE));
+const IMAGE_SIZE = 120;
+let INVERT_IMAGE_X = false;
+let INVERT_IMAGE_Y = false;
+let IMAGE_X_POS = ~~(Math.random() * (SCREEN_WIDTH - IMAGE_SIZE));
+let IMAGE_Y_POS = ~~(Math.random() * (SCREEN_HEIGHT - IMAGE_SIZE));
 
-// const SPEED = 120;
+const SPEED = 120;
 
-/* let last_clock = new Date().getTime();
+let last_clock = new Date().getTime();
 
 function moveFatJoe({ context, image }) {
     const actual_clock = new Date().getTime();
@@ -77,4 +77,4 @@ const fatjoe = new Image();
 fatjoe.src = '/assets/images/fatjoe.png';
 fatjoe.onload = () => {
     window.requestAnimationFrame(moveFatJoe({ context, image: fatjoe }));
-} */
+}
